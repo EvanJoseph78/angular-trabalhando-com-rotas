@@ -5,8 +5,15 @@ import { CardComponent } from './pages/portifolio/card/card.component';
 
 const routes: Routes = [
   { path: '', component: TitleComponent, pathMatch: 'full' },
-  { path: 'portfolio/:id', component: CardComponent, pathMatch: 'prefix' },
-  { path: '**', redirectTo: ''} // redireciona novamente para a home ** => qualquer coisa
+  {
+    path: 'portfolio',
+    component: CardComponent,
+    children: [
+      { path: ':id', component: CardComponent },
+      { path: ':id/:user', component: CardComponent },
+    ],
+  },
+  { path: '**', redirectTo: '' }, // redireciona novamente para a home ** => qualquer coisa
 ];
 
 @NgModule({

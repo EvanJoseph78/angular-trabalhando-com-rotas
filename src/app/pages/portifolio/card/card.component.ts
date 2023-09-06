@@ -7,8 +7,16 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./card.component.css'],
 })
 export class CardComponent {
-  constructor(private activeRout: ActivatedRoute) { // recupera os parâmetros das rotas
-    this.activeRout.params.subscribe();
-    (res: any) => console.log(res);
+  constructor(private parametrizador: ActivatedRoute) {
+    // recupera os parâmetros das rotas
+
+    //https://localhost:4200/porfolio/{1}    =>  os chamados query params
+    this.parametrizador.params.subscribe((res) => {
+      console.log(res);
+    });
+    //https://localhost:4200/porfolio/{1}?{name=evandro&token=123}
+    this.parametrizador.queryParams.subscribe((res) => {
+      console.log(res);
+    });
   }
 }
